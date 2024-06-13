@@ -7,7 +7,8 @@ const swaggerUi = require("swagger-ui-express");
 const app = express();
 const router = express.Router();
 
-
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 const professorRoute = require('./routes/professor');
 
@@ -16,8 +17,7 @@ app.use('/', professorRoute);
 
 db.sync(() => console.log(`O serviço de banco de dados está conectado`));
 
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
+
 const options = {
   definition: {
     openapi: "3.1.0",
